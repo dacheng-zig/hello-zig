@@ -11,7 +11,6 @@ const Foo = struct {
 };
 
 test "@hasDecl" {
-    std.once();
     try expect(@hasDecl(Foo, "blah"));
 
     // Even though `hi` is private, @hasDecl returns true because this test is
