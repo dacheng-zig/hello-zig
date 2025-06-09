@@ -2,9 +2,9 @@ const std = @import("std");
 
 // arena allocator
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    var arena = std.heap.ArenaAllocator.init(gpa.allocator());
+    var dbgalloc = std.heap.DebugAllocator(.{}).init;
+    defer _ = dbgalloc.deinit();
+    var arena = std.heap.ArenaAllocator.init(dbgalloc.allocator());
     defer _ = arena.deinit();
     var allocator = arena.allocator();
 

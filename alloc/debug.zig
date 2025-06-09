@@ -1,9 +1,9 @@
 const std = @import("std");
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}).init;
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+    var dbgalloc = std.heap.DebugAllocator(.{}).init;
+    defer _ = dbgalloc.deinit();
+    const allocator = dbgalloc.allocator();
 
     const val = try allocator.create(i32);
     defer allocator.destroy(val);
